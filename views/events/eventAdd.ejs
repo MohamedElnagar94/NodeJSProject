@@ -1,0 +1,45 @@
+<%- include("../includes/head") %>
+<%- include("../includes/nav") %>
+
+<div class="container mt-5">
+    <h1 class="w-100 text-center text-warning">ADD NEW EVENT</h1>
+    <form action="/event/add" method="POST" class="needs-validation w-75 m-0 m-auto" novalidate>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-12">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="Title" aria-describedby="TitleHelp" name="title" placeholder="Enter Title" required>
+                <div class="invalid-feedback">Please you should enter Title</div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="Event">Event Date</label>
+                <input type="date" class="form-control" id="Event" aria-describedby="EventHelp" name="event" placeholder="Enter Event" required>
+                <div class="invalid-feedback">Please you should enter Event Date</div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="mainSpeaker">Main Speaker</label>
+                <select class="form-control singleSelect" name="mainSpeaker" id="mainSpeaker">
+                    <option value="" disabled selected>Select one</option>
+                    <% speakers.forEach((speaker)=>{ %>
+                        <option value="<%= speaker._id %>"><%= speaker.FullName %></option>
+                    <% }) %>
+                </select>
+                <div class="invalid-feedback">Please you should select mainSpeaker</div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="otherSpeakers">Main Speaker</label>
+                <select class="form-control singleSelect" name="otherSpeakers" id="otherSpeakers" multiple="multiple">
+                    <option value="" disabled>Select one or more</option>
+                    <% speakers.forEach((speaker)=>{ %>
+                    <option value="<%= speaker._id %>"><%= speaker.FullName %></option>
+                    <% }) %>
+                </select>
+                <div class="invalid-feedback">Please you should select one at list otherSpeakers</div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <button type="submit" class="btn btn-primary w-50 font-weight-bold">Save</button>
+        </div>
+    </form>
+</div>
+
+<%- include("../includes/footer") %>

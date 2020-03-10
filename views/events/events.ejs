@@ -1,0 +1,128 @@
+<%- include("../includes/head") %>
+<%- include("../includes/nav") %>
+<div class="container mt-5">
+    <h1 class="w-100 text-center text-warning pt-0 pb-3">Events</h1>
+    <table class="table table-striped table-hover table-bordered text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Event</th>
+                <th>Main Speaker</th>
+                <th>Other Speakers</th>
+                <% if(statusNumber === 0){ %>
+                <th colspan="2">Action</th>
+                <% }else{ %>
+
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% count=1 %>
+            <% events.forEach((event)=>{ %>
+                <tr id="<%= event._id %>">
+                    <th scope="row" class="idCount"><%= count++ %></th>
+                    <td><%= event.title %></td>
+                    <td><%= event.event %></td>
+                    <td>
+                        <% if(event.mainSpeaker!=null){%>
+                            <%= event.mainSpeaker.FullName%>
+                        <%}%>
+                    </td>
+                    <td>
+                    <% event.otherSpeakers.forEach((event)=>{ %>
+                        <span class="btn btn-outline-success border border-success mb-2"><%= event.FullName %></span>
+                    <% }) %>
+                    <% if(statusNumber === 0){ %>
+                    </td>
+                    <td>
+                        <button id="deleteSpeaker<%= event._id %>" type="button" class="btn btn-danger" data-speakerID=<%= event._id %> data-toggle="modal" data-target="#exampleModalCenter<%= event._id %>">delete</button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade targetModal" id="exampleModalCenter<%= event._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle<%= event._id %>">Delete Speaker</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure to delete event <%= event.title %> ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <form method="post">
+                                        <div class="form-group d-none">
+                                            <label for="id<%= event._id %>" class="col-form-label">id:</label>
+                                            <input type="text" name="_id" class="form-control" id="id<%= event._id %>" value="<%= event._id %>">
+                                        </div>
+                                        <button type="submit" class="btn btn-danger targetEvent <%= event._id %>">Delete speaker</button>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="editSpeaker<%= event._id %>" type="button" class="btn btn-primary" data-speakerID=<%= event._id %> data-toggle="modal" data-target="#exampleModal<%= event._id %>">edit</button>
+                        <div class="modal fade" id="exampleModal<%= event._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog text-left" role="document">
+                                <form action="/event/edit" method="POST">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel<%= event._id %>">Edit speaker</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group d-none">
+                                                <label for="ides<%= event._id %>" class="col-form-label">id:</label>
+                                                <input type="text" name="_id" class="form-control" id="ides<%= event._id %>" value="<%= event._id %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="title" class="col-form-label">Title:</label>
+                                                <input type="text" name="title" class="form-control" id="title<%= event._id %>" value="<%= event.title %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="event" class="col-form-label">Event Date:</label>
+                                                <input type="date" name="event" class="form-control" id="event<%= event._id %>" value="<%= event.event %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="event" class="col-form-label">Main Speaker:</label>
+                                                <select class="form-control singleSelect" name="mainSpeaker" id="mainSpeaker<%= event._id %>">
+                                                    <% speakers.forEach((speaker)=>{ %>
+                                                        <option value="<%= speaker._id %>" <% if(event.mainSpeaker!=null){if(speaker._id === event.mainSpeaker._id){ %>selected<% }else{ %><% }} %>><%= speaker.FullName %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="event" class="col-form-label">Other Speakers:</label>
+                                                <select class="form-control singleSelect" name="otherSpeakers" id="otherSpeakers<%= event._id %>" multiple="multiple">
+                                                    <% speakers.forEach((speaker)=>{ %>
+                                                    <option value="<%= speaker._id %>" <% event.otherSpeakers.forEach((event)=>{if(speaker._id === event._id){%> selected <% }else{ %> <% }}) %>><%= speaker.FullName %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Edit Speaker</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                    <% }else{ %>
+
+                    <% } %>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+</div>
+<%- include("../includes/footer") %>

@@ -1,0 +1,112 @@
+<%- include("./includes/head") %>
+<%- include("./includes/nav") %>
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-6 m-0 m-auto">
+            <div class="profile-sidebar p-3">
+                <div class="profile-userpic text-center">
+                    <img src="/Images/<%=speaker[0].Image%>" class="img-responsive" alt="" style="width: 30%;height: 140px;">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        <%=speaker[0].FullName%>
+                    </div>
+                    <div class="profile-usertitle-job">
+                        <% if(speaker[0].Status === 0){ %>Admin<% }else{ %>Speaker<% } %>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">FullName : <span class="badge badge-success badge-pill"><%=speaker[0].FullName%></span></li>
+                        <li class="list-group-item">UserName : <span class="badge badge-success badge-pill"><%=speaker[0].UserName%></span></li>
+                        <li class="list-group-item">
+                            <div class="d-flex flex-wrap">
+                                <div class="col-md-4">
+                                    <span>City : </span> 
+                                    <span class="badge badge-success badge-pill"><%=speaker[0].Address.city%></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span>Street : </span> 
+                                    <span class="badge badge-success badge-pill"><%=speaker[0].Address.street%></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span>Building : </span> 
+                                    <span class="badge badge-success badge-pill"><%=speaker[0].Address.building%></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">Status : <span class="badge badge-success badge-pill"><% if(speaker[0].Status === 0){ %>Admin<% }else{ %>Speaker<% } %></span></li>
+                        <li class="list-group-item"><button id="editSpeaker" type="button" class="btn btn-primary" data-speakerID=<%= speaker[0]._id %> data-toggle="modal" data-target="#exampleModal<%= speaker[0]._id %>">edit</button></li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal<%= speaker[0]._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog text-left" role="document">
+        <form action="/<%=status%>/editProfile" method="POST" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit speaker</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group d-none">
+                        <label for="id" class="col-form-label">id:</label>
+                        <input type="text" name="_id" class="form-control" id="id<%= speaker[0]._id %>" value="<%= speaker[0]._id %>">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="FullName" class="col-form-label">FullName:</label>
+                        <input type="text" name="FullName" class="form-control" id="FullName<%= speaker[0]._id %>" value="<%= speaker[0].FullName %>">
+                        <div class="invalid invalidFullName">Please you should enter full name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="UserName" class="col-form-label">UserName:</label>
+                        <input type="text" name="UserName" class="form-control" id="UserName1<%= speaker[0]._id %>" value="<%= speaker[0].UserName %>">
+                        <div class="invalid invalidUserName">Please you should enter username</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" class="col-form-label">Password:</label>
+                        <input type="password" name="Password" class="form-control" id="Password1<%= speaker[0]._id %>" value="<%= speaker[0].Password %>">
+                        <div class="invalid invalidPassword">Please you should enter password</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="city" class="col-form-label">city:</label>
+                        <input type="text" name="city" class="form-control" id="city<%= speaker[0]._id %>" value="<%= speaker[0].Address.city %>">
+                        <div class="invalid invalidcity">Please you should enter city</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="street" class="col-form-label">street:</label>
+                        <input type="text" name="street" class="form-control" id="street<%= speaker[0]._id %>" value="<%= speaker[0].Address.street %>">
+                        <div class="invalid invalidstreet">Please you should enter street</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="building" class="col-form-label">building:</label>
+                        <input type="text" name="building" class="form-control" id="building<%= speaker[0]._id %>" value="<%= speaker[0].Address.building %>">
+                        <div class="invalid invalidbuilding">Please you should enter building</div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="image" class="col-form-label">Image</label>
+                        <input type="file" class="form-control-file mb-4 checkImage" id="image<%= speaker[0]._id %>" name="image" placeholder="Enter Image">
+                        <div class="invalid invalidImage mb-4">Please you should enter photo</div>
+                        <% if(speaker[0].Image){ %>
+                            <img class="img-fluid w-100" src="/Images/<%= speaker[0].Image %>" alt="">
+                        <% }else{ %>
+                            There is No Image
+                        <% } %>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary editSpeaker">Edit Speaker</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include("./includes/footer") %>

@@ -1,0 +1,75 @@
+<%- include("includes/head") %>
+<div class="my-login-page">
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-md-center h-100">
+                <div class="card-wrapper">
+                    <div class="brand">
+                        <img src="Images/logo.jpg">
+                    </div>
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h4 class="card-title">Register</h4>
+                            <form method="POST" action="/register" novalidate class="needs-validation" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="FullName">Full Name</label>
+                                    <input id="FullNameLogin" type="text" class="form-control" name="FullName" value="" required autofocus placeholder="Enter Full name">
+                                    <div class="invalid invalidFullName">Please you should enter full name</div>
+                                    <div id="invalidFullNameRegister" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="UserName">User Name</label>
+                                    <input id="UserNameLogin" type="text" class="form-control" name="UserName" value="" required autofocus placeholder="Enter user name">
+                                    <div class="invalid invalidUserName">Please you should enter username</div>
+                                    <div id="invalidUserNameRegister" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input id="password" type="password" class="form-control" name="Password" required placeholder="Enter password">
+                                    <div class="invalid invalidPassword">Please you should enter password</div>
+                                    <div id="invalidPasswordRegister" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input id="cityRegister" type="text" class="form-control" name="city" value="" required autofocus placeholder="Enter City">
+                                    <div class="invalid invalidcity">Please you should enter city</div>
+                                    <div id="invalidCityRegister" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="street">Street</label>
+                                    <input id="streetRegister" type="number" class="form-control" name="street" value="" required autofocus placeholder="Enter Street">
+                                    <div class="invalid invalidstreet">Please you should enter street</div>
+                                    <div id="invalidStreetRegister" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="building">Building</label>
+                                    <input id="buildingRegister" type="number" class="form-control" name="building" value="" required autofocus placeholder="Enter Building">
+                                    <div class="invalid invalidbuilding">Please you should enter building</div>
+                                    <div id="invalidBuildingRegister" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <input type="file" class="form-control-file" id="image" aria-describedby="imageHelp" name="image" placeholder="Enter Image" required>
+                                    <div class="invalid invalidImage">Please you should enter photo</div>
+                                </div>
+                                <div class="form-group no-margin">
+                                    <button type="submit" class="btn btn-primary btn-block addSpeaker">
+                                        Create Account
+                                    </button>
+                                </div>
+
+                                <div class="margin-top20 text-center">
+                                    have an account? <a href="/login">SIGN UP</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Copyright &copy; Your Company 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include("includes/footer") %>

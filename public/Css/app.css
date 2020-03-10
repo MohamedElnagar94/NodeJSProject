@@ -1,0 +1,210 @@
+html,body {
+	height: 100%;
+}
+
+body.my-login-page {
+	background-color: #f7f9fb;
+	font-size: 14px;
+}
+
+.my-login-page .brand {
+	width: 90px;
+	height: 90px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 0 auto;
+	margin: 40px auto;
+	box-shadow: 0 0 40px rgba(0,0,0,.05);
+}
+
+.my-login-page .brand img {
+	width: 100%;
+}
+
+.my-login-page .card-wrapper {
+	width: 400px;
+}
+
+.my-login-page .card {
+	border-color: transparent;
+	box-shadow: 0 0 40px rgba(0,0,0,.05);
+}
+
+.my-login-page .card.fat {
+	padding: 10px;
+}
+
+.my-login-page .card .card-title {
+	margin-bottom: 30px;
+}
+
+.my-login-page .form-control {
+	border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+	width: 100%;
+}
+
+.my-login-page .btn.btn-block {
+	padding: 12px 10px;
+}
+
+.my-login-page .margin-top20 {
+	margin-top: 20px;
+}
+
+.my-login-page .no-margin {
+	margin: 0;
+}
+
+.my-login-page .footer {
+	margin: 40px 0;
+	color: #888;
+	text-align: center;
+}
+
+span.select2.select2-container{
+	width: 100% !important;
+}
+span.select2-selection.select2-selection--single,span.select2-selection__arrow{
+    height: 45px !important;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+body {
+	background: #F1F3FA;
+  }
+  
+  /* Profile container */
+  .profile {
+	margin: 20px 0;
+  }
+  
+  /* Profile sidebar */
+  .profile-sidebar {
+	padding: 20px 0 10px 0;
+	background: #fff;
+  }
+  
+  .profile-userpic img {
+	float: none;
+	margin: 0 auto;
+	width: 50%;
+	height: 50%;
+	-webkit-border-radius: 50% !important;
+	-moz-border-radius: 50% !important;
+	border-radius: 50% !important;
+  }
+  
+  .profile-usertitle {
+	text-align: center;
+	margin-top: 20px;
+  }
+  
+  .profile-usertitle-name {
+	color: #5a7391;
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 7px;
+  }
+  
+  .profile-usertitle-job {
+	text-transform: uppercase;
+	color: #5b9bd1;
+	font-size: 12px;
+	font-weight: 600;
+	margin-bottom: 15px;
+  }
+  
+  .profile-userbuttons {
+	text-align: center;
+	margin-top: 10px;
+  }
+  
+  .profile-userbuttons .btn {
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 6px 15px;
+	margin-right: 5px;
+  }
+  
+  .profile-userbuttons .btn:last-child {
+	margin-right: 0px;
+  }
+	  
+  .profile-usermenu {
+	margin-top: 30px;
+  }
+  
+  .profile-usermenu ul li {
+	  display: block;
+	  width: 100%;
+	border-bottom: 1px solid #f0f4f7;
+  }
+  
+  .profile-usermenu ul li:last-child {
+	border-bottom: none;
+  }
+  
+  .profile-usermenu ul li a {
+	color: #93a3b5;
+	font-size: 14px;
+	font-weight: 400;
+  }
+  
+  .profile-usermenu ul li a i {
+	margin-right: 8px;
+	font-size: 14px;
+  }
+  
+  .profile-usermenu ul li a:hover {
+	background-color: #fafcfd;
+	color: #5b9bd1;
+  }
+  
+  .profile-usermenu ul li.active {
+	border-bottom: none;
+  }
+  
+  .profile-usermenu ul li.active a {
+	color: #5b9bd1;
+	background-color: #f6f9fb;
+	border-left: 2px solid #5b9bd1;
+	margin-left: -2px;
+  }
+  
+  /* Profile Content */
+  .profile-content {
+	padding: 20px;
+	background: #fff;
+	min-height: 460px;
+  }
+
+  .table thead th{
+	vertical-align: middle; 
+  }
+  .invalid{
+	display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
+  /* .fixCenter{
+	  
+display: flex;
+	  
+justify-content: center;
+	  
+align-items: center;
+	 } */

@@ -1,0 +1,155 @@
+<%- include("../includes/head") %>
+<%- include("../includes/nav") %>
+<div class="container mt-5">
+    <h1 class="w-100 text-center text-warning pt-0 pb-3">SPEAKERS</h1>
+    <table class="table table-striped table-hover table-bordered text-center">
+        <thead class="thead-dark" style="vertical-align: middle;">
+            <tr>
+                <th rowspan="2">id</th>
+                <th rowspan="2">Full Name</th>
+                <th rowspan="2">User Name</th>
+                <th colspan="3">Address</th>
+                <th rowspan="2">Image</th>
+                <th colspan="2" rowspan="2">Actions</th>
+            </tr>
+            <tr>
+                <th>City</th>
+                <th>Street</th>
+                <th>Building</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% count=1 %>
+            <% users.forEach((user)=>{ %>
+                <tr id="<%= user._id %>">
+                    <th scope="row" class="idCount"><%= count++ %></th>
+                    <td><%= user.FullName %></td>
+                    <td><%= user.UserName %></td>
+                    <td><%= user.Address.city %></td>
+                    <td><%= user.Address.street %></td>
+                    <td><%= user.Address.building %></td>
+                    <td style="width: 150px">
+                        <% if(user.Image){ %>
+                            <img class="img-fluid w-100" src="/Images/<%= user.Image %>" alt="">
+                        <% }else{ %>
+                            No Image
+                        <% } %>
+                    </td>
+                    <td>
+                        <button id="deleteSpeaker" type="button" class="btn btn-danger" data-speakerID=<%= user._id %> data-toggle="modal" data-target="#exampleModalCenter<%= user._id %>">delete</button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade targetModal" id="exampleModalCenter<%= user._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Speaker</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure to delete <%= user.FullName %> ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary closeModal" data-dismiss="modal">Close</button>
+                                    <form method="post">
+                                        <div class="form-group d-none">
+                                            <label for="id" class="col-form-label">id:</label>
+                                            <input type="text" name="_id" class="form-control" id="ides<%= user._id %>" value="<%= user._id %>">
+                                        </div>
+                                        <button type="submit" class="btn btn-danger targetSpeaker <%= user._id %>">Delete speaker</button>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="editSpeaker" type="button" class="btn btn-primary" data-speakerID=<%= user._id %> data-toggle="modal" data-target="#exampleModal<%= user._id %>">edit</button>
+                        <div class="modal fade" id="exampleModal<%= user._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog text-left" role="document">
+                                <form action="/speaker/edit" method="POST" enctype="multipart/form-data">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit speaker</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group d-none">
+                                                <label for="id" class="col-form-label">id:</label>
+                                                <input type="text" name="_id" class="form-control" id="id<%= user._id %>" value="<%= user._id %>">
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FullName" class="col-form-label">FullName:</label>
+                                                <input type="text" name="FullName" class="form-control" id="FullName<%= user._id %>" value="<%= user.FullName %>">
+                                                <div class="invalid invalidFullName">Please you should enter full name</div>
+                                            </div>
+                                            <% if(statusNumber === 0 && user.Status === 0){ %> 
+                                            <div class="form-group">
+                                                <label for="UserName" class="col-form-label">UserName:</label>
+                                                <input type="text" name="UserName" class="form-control" id="UserName1<%= user._id %>" value="<%= user.UserName %>">
+                                                <div class="invalid invalidUserName">Please you should enter username</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Password" class="col-form-label">Password:</label>
+                                                <input type="password" name="Password" class="form-control" id="Password1<%= user._id %>" value="<%= user.Password %>">
+                                                <div class="invalid invalidPassword">Please you should enter password</div>
+                                            </div>
+                                            <% }else{ %>
+                                            <div class="form-group d-none">
+                                                <label for="UserName" class="col-form-label">UserName:</label>
+                                                <input type="text" name="UserName" class="form-control" id="UserName<%= user._id %>" value="<%= user.UserName %>">
+                                                <div class="invalid invalidUserName">Please you should enter username</div>
+                                            </div>
+                                            <div class="form-group d-none">
+                                                <label for="Password" class="col-form-label">Password:</label>
+                                                <input type="password" name="Password" class="form-control" id="Password<%= user._id %>" value="<%= user.Password %>">
+                                                <div class="invalid invalidPassword">Please you should enter password</div>
+                                            </div>
+                                            <% } %>
+                                            <div class="form-group">
+                                                <label for="city" class="col-form-label">city:</label>
+                                                <input type="text" name="city" class="form-control" id="city<%= user._id %>" value="<%= user.Address.city %>">
+                                                <div class="invalid invalidcity">Please you should enter city</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="street" class="col-form-label">street:</label>
+                                                <input type="text" name="street" class="form-control" id="street<%= user._id %>" value="<%= user.Address.street %>">
+                                                <div class="invalid invalidstreet">Please you should enter street</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="building" class="col-form-label">building:</label>
+                                                <input type="text" name="building" class="form-control" id="building<%= user._id %>" value="<%= user.Address.building %>">
+                                                <div class="invalid invalidbuilding">Please you should enter building</div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="image" class="col-form-label">Image</label>
+                                                <input type="file" class="form-control-file mb-4 checkImage" id="image<%= user._id %>" name="image" placeholder="Enter Image">
+                                                <div class="invalid invalidImage mb-4">Please you should enter photo</div>
+                                                <% if(user.Image){ %>
+                                                    <img class="img-fluid w-100" src="/Images/<%= user.Image %>" alt="">
+                                                <% }else{ %>
+                                                    There is No Image
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary editSpeaker">Edit Speaker</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+</div>
+<%- include("../includes/footer") %>

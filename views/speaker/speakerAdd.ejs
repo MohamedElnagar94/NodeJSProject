@@ -1,0 +1,56 @@
+<%- include("../includes/head") %>
+<%- include("../includes/nav") %>
+
+<div class="container mt-5">
+    <h1 class="w-100 text-center text-warning">ADD NEW SPEAKER</h1>
+    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="FullName">FullName</label>
+                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" name="FullName" placeholder="Enter FullName" required>
+                <div class="invalid invalidFullName">Please you should enter full name</div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="UserName">UserName</label>
+                <input type="text" class="form-control" id="UserName" aria-describedby="UserNameHelp" name="UserName" placeholder="Enter UserName" required>
+                <div class="invalid invalidUserName">Please you should enter username</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" aria-describedby="PasswordHelp" name="Password" placeholder="Enter Password" required>
+                <div class="invalid invalidPassword">Please you should enter password</div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="city">city</label>
+                <input type="text" class="form-control" id="city" aria-describedby="cityHelp" name="city" placeholder="Enter city" required>
+                <div class="invalid invalidcity">Please you should enter city</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="street">street</label>
+                <input type="number" class="form-control" id="street" aria-describedby="streetHelp" name="street" placeholder="Enter street" required>
+                <div class="invalid invalidstreet">Please you should enter street</div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="building">building</label>
+                <input type="number" class="form-control" id="building" aria-describedby="buildingHelp" name="building" placeholder="Enter building" required>
+                <div class="invalid invalidbuilding">Please you should enter building</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="image">Image</label>
+                <input type="file" class="form-control-file" id="image" aria-describedby="imageHelp" name="image" placeholder="Enter Image" required>
+                <div class="invalid invalidImage">Please you should enter photo</div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <button type="submit" class="btn btn-primary w-50 font-weight-bold addSpeaker">Save</button>
+        </div>
+    </form>
+</div>
+
+<%- include("../includes/footer") %>
